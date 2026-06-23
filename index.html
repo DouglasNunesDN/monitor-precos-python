@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Nome | Consultoria em Engenharia de Software & Dados</title>
+    
+    <style>
+        /* ==========================================================================
+           TEMA DEFINITIVO: CAFÉ DA MEIA-NOITE (Premium & Corporativo)
+           ========================================================================== */
+        :root {
+            --bg-color: #110f0e;
+            --card-bg: #191614;
+            --text-main: #f5f5f4;
+            --text-muted: #a8a29e;
+            --accent-primary: #fbbf24; /* Âmbar Dourado */
+            --accent-secondary: #f59e0b; /* Laranja Quente */
+            --border-color: #24201c;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 5rem;
+            overflow-x: hidden;
+        }
+        .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        
+        .border-top-line {
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(to right, #78350f, var(--accent-secondary), var(--accent-primary));
+        }
+
+        .container { max-width: 1024px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        nav h1 { text-transform: uppercase; font-size: 1rem; letter-spacing: 0.15em; color: white; }
+        .nav-bracket { color: var(--accent-secondary); }
+        .nav-slash { color: var(--accent-primary); }
+        .nav-links a { text-decoration: none; color: var(--text-muted); margin-left: 2rem; font-size: 0.85rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links .nav-contact { color: var(--accent-primary); font-weight: bold; }
+        
+        /* Hero Section */
+        header { padding: 7rem 0 5rem 0; max-width: 850px; }
+        .hero-subtitle { color: var(--accent-primary); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; font-weight: 600; }
+        .hero-title { font-size: 2.5rem; font-weight: 800; color: white; line-height: 1.25; margin-bottom: 1.5rem; letter-spacing: -0.025em; }
+        @media (min-width: 768px) { .hero-title { font-size: 3.25rem; } }
+        .hero-description { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 760px; }
+        
+        .btn-container { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+        .btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+        .btn:hover { background: var(--accent-primary); color: var(--bg-color); }
+        .btn-secondary { border-color: var(--border-color); color: var(--text-muted); font-weight: normal; }
+        .btn-secondary:hover { background: var(--card-bg); color: white; border-color: var(--text-muted); }
+
+        /* Seção de Serviços (Foco Consultoria) */
+        .services-section { padding: 4rem 0; border-top: 1px solid var(--border-color); }
+        .services-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+        @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+        .service-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 2rem 1.5rem; border-radius: 4px; }
+        .service-card h4 { font-size: 1.1rem; color: white; margin-bottom: 0.75rem; }
+        .service-card p { color: var(--text-muted); font-size: 0.85rem; font-weight: 300; }
+
+        /* Seção Projetos & Filtros */
+        .projects-section { padding: 4rem 0; border-top: 1px solid var(--border-color); }
+        .header-projetos {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            margin-bottom: 3rem;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) { .header-projetos { flex-direction: row; align-items: center; } }
+        .section-title { color: white; font-size: 1.1rem; letter-spacing: 0.1em; }
+        .section-number { color: var(--accent-primary); margin-right: 0.5rem; }
+        
+        .filtros { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn-filtro { padding: 0.375rem 1rem; border-radius: 4px; font-size: 0.75rem; background: transparent; cursor: pointer; transition: all 0.2s; font-weight: 500; }
+        .btn-filtro.ativo { border: 1px solid var(--accent-primary); background: rgba(251, 191, 36, 0.05); color: var(--accent-primary); }
+        .btn-filtro.inativo { border: 1px solid var(--border-color); color: var(--text-muted); }
+        .btn-filtro.inativo:hover { color: white; border-color: var(--text-muted); }
+        
+        /* Grid de Projetos */
+        .grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+        .card:hover { border-color: var(--accent-primary); transform: translateY(-2px); }
+        .card-tag { font-size: 10px; color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+        .card h4 { font-size: 1.15rem; font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.75rem; color: white; }
+        .card p { color: var(--text-muted); font-size: 0.875rem; font-weight: 300; line-height: 1.5; }
+        .badges { display: flex; flex-wrap: wrap; gap: 0.375rem; margin: 1.5rem 0; }
+        .badge { background: var(--bg-color); color: var(--text-main); font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border-color); font-weight: 500; }
+        .card-link { font-size: 0.8rem; color: var(--accent-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 500; }
+        .card-link:hover { text-decoration: underline; }
+        
+        /* Rodapé */
+        footer { margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.75rem; color: var(--text-muted); }
+        .footer-links { margin-bottom: 0.5rem; }
+        footer a { color: var(--accent-primary); text-decoration: none; margin: 0 0.5rem; }
+        footer a:hover { text-decoration: underline; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+</head>
+<body>
+
+    <div class="border-top-line"></div>
+
+    <div class="container">
+        <!-- Navegação -->
+        <nav>
+            <h1 class="font-mono">
+                <span class="nav-bracket">[</span>SeuNome<span class="nav-slash">.consulting]</span>
+            </h1>
+            <div class="font-mono nav-links">
+                <a href="#sobre">//escopo</a>
+                <a href="#servicos">//servicos</a>
+                <a href="#projetos">//casos_de_estudo</a>
+                <a href="mailto:seu-email@dominio.com" class="nav-contact">//falar_comigo</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section (Narrativa de Engenharia + Negócio) -->
+        <header id="sobre">
+            <p class="font-mono hero-subtitle">// Engenharia de Software & Inteligência Operacional</p>
+            <h2 class="hero-title">Soluções arquiteturais robustas desenhadas através de <span style="color: var(--accent-primary);">dados e automação</span>.</h2>
+            <p class="hero-description">
+                Desenvolvedor Full Stack & Cientista de Dados. Especialista em construir sistemas web ponta a ponta e desenvolver pipelines de processamento e modelos preditivos em Python. Atuo estrategicamente no desenvolvimento de robôs personalizados para automação de tarefas administrativas repetitivas, eliminando gargalos operacionais e otimizando a eficiência financeira do seu negócio.
+            </p>
+            <div class="btn-container font-mono">
+                <a href="mailto:seu-email@dominio.com" class="btn">agendar_diagnostico_tecnico()</a>
+                <button onclick="document.getElementById('projetos').scrollIntoView()" class="btn btn-secondary">ver_casos_de_estudo()</button>
+            </div>
+        </header>
+
+       <!-- Nova Seção: Serviços e Consultoria -->
+<section class="services-section" id="servicos">
+    <h3 class="font-mono section-title"><span class="section-number">01.</span> FRENTES_DE_ATUACAO</h3>
+    <div class="services-grid">
+        <div class="service-card">
+            <p class="font-mono card-tag" style="margin-bottom: 0.5rem;">Ponta a Ponta</p>
+            <h4>Sistemas Full Stack</h4>
+            <p>Arquitetura, desenvolvimento e implantação de plataformas web escaláveis, microsserviços rápidos e APIs seguras focadas no seu modelo de negócio.</p>
+        </div>
+        <div class="service-card">
+            <p class="font-mono card-tag" style="margin-bottom: 0.5rem;">Científico / BI</p>
+            <h4>Cultura Orientada a Dados</h4>
+            <p>Estruturação de pipelines de processamento (ETL), análise preditiva avançada e engenharia de recursos para transformar dados crus em decisões lucrativas.</p>
+        </div>
+        <div class="service-card">
+            <p class="font-mono card-tag" style="margin-bottom: 0.5rem;">Eficiência / RPA</p>
+            <h4>Hiperautomação & Bots</h4>
+            <p>Desenvolvimento de robôs sob medida em Python para executar tarefas repetitivas, extração de dados da web (scraping) e integração de sistemas legados.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Casos / Projetos -->
+<section class="projects-section" id="projetos">
+    <div class="header-projetos">
+        <h3 class="font-mono section-title">
+            <span class="section-number">02.</span> PORTFOLIO_DE_ENGENHARIA
+        </h3>
+        
+        <!-- Filtros Avançados (Incluindo Automação) -->
+        <div class="filtros font-mono" id="filtros-container">
+            <button onclick="filtrarProjetos('todos')" id="btn-todos" class="btn-filtro ativo">todos</button>
+            <button onclick="filtrarProjetos('fullstack')" id="btn-fullstack" class="btn-filtro inativo">full-stack</button>
+            <button onclick="filtrarProjetos('datascience')" id="btn-datascience" class="btn-filtro inativo">data-science</button>
+            <button onclick="filtrarProjetos('automacao')" id="btn-automacao" class="btn-filtro inativo">automacoes/bots</button>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+<footer id="contato" class="font-mono">
+    <p class="footer-links">
+        // ecossistema_profissional: 
+        <a href="https://linkedin.com" target="_blank">linkedin</a> / 
+        <a href="https://github.com" target="_blank">github</a>
+    </p>
+    <p>© 2026 Seu Nome. Serviços de Consultoria de Tecnologia.</p>
+</footer>

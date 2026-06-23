@@ -1,0 +1,17 @@
+/* Customização fina da interface */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #110f0e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #24201c;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fbbf24;
+}
